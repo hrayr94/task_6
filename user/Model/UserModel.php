@@ -43,7 +43,6 @@ class UserModel
     }
 
 
-
     // Categories Methods
 
     public function getCategories(): array
@@ -65,11 +64,27 @@ class UserModel
 
     // Cart Methods
 
+    public function checkCartSpecificProduct($user_id, $product_id)
+    {
+        $query = "SELECT * FROM cart WHERE user_id = ? AND product_id = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$user_id, $product_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function addToCart($user_id, $product_id, $quantity): array
     {
-        $this->createCartItem($user_id, $product_id, $quantity);
-        return $this->getAllCartItems($user_id);
+        try {
+            $this->createCartItem($user_id, $product_id, $quantity);
+            return $this->getAllCartItems($user_id); // Assuming this method exists
+        } catch (PDOException $e) {
+            // Log or handle the exception
+            error_log('Error adding to cart: ' . $e->getMessage());
+            return []; // Or return false or an error status based on your application logic
+        }
     }
+
 
     public function createCartItem($user_id, $product_id, $quantity): void
     {
@@ -120,6 +135,15 @@ class UserModel
 
     // Wish Methods
 
+    public function checkWishSpecificProduct($user_id, $product_id)
+    {
+        $query = "SELECT * FROM wish WHERE user_id = ? AND product_id = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$user_id, $product_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function addToWish($user_id, $product_id): array
     {
         $this->createWishItem($user_id, $product_id);
@@ -160,53 +184,83 @@ class UserModel
 
     // Order Methods
 
-    public function addToOrder($user_id): array
+    public function getAllCartItems($user_id): array
     {
-        $cartItems = $this->getCartItems($user_id);
+        $query = "
+    SELECT 
+        p.name, 
+        p.price, 
+        p.image, 
+        c.quantity, 
+        p.description, 
+        c.id, 
+        c.product_id 
+    FROM cart AS c
+    JOIN products AS p ON p.id = c.product_id 
+    WHERE user_id = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addToOrder($user_id)
+    {
+        // Get cart items
+        $cartItems = $this->getAllCartItems($user_id);
+
+        // Calculate total amount
+        $total_amount = 0;
+        foreach ($cartItems as $item) {
+            $total_amount += $item['price'] * $item['quantity'];
+        }
+
+        // Create order and get order ID
+        $order_id = $this->createOrder($user_id, $total_amount);
 
         // Create order items for each cart item
         foreach ($cartItems as $item) {
-            $this->createOrderItem($user_id, $item['product_id'], $item['quantity']);
+            $this->createOrderItem($order_id, $item['product_id'], $item['quantity']);
         }
 
         // Clear cart after order
         $this->clearCart($user_id);
 
-        return $this->getAllCartItems($user_id); // Assuming you want to return updated cart items after placing order
+        return $this->getAllOrderItems($order_id); // Return updated order items after placing order
     }
 
-    public function createOrderItem($user_id, $product_id, $quantity): void
+
+    private function createOrder($user_id, $total_amount)
     {
-        $query = "INSERT INTO order_items VALUES (null, ?, ?, ?)";
+        $query = "INSERT INTO orders (user_id, total_amount) VALUES (?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$user_id, $product_id, $quantity]);
+        $stmt->execute([$user_id, $total_amount]);
+        return $this->connection->lastInsertId();
     }
 
-    public function getOrderItems($order_id): array
+
+    public function createOrderItem($order_id, $product_id, $quantity)
     {
-        $query = "SELECT * FROM order_items WHERE order_id = ?";
+        $query = "INSERT INTO order_items (order_id, product_id, quantity) VALUES (?, ?, ?)";
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$order_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute([$order_id, $product_id, $quantity]);
     }
 
     public function getAllOrderItems($order_id): array
     {
         $query = "
-        SELECT 
-            p.name, 
-            p.price, 
-            p.image, 
-            p.description, 
-            o.id, 
-            o.product_id,
-            o.quantity
-        FROM order_items AS o
-        JOIN products AS p ON p.id = o.product_id 
-        WHERE order_id = ?";
+    SELECT 
+        p.name, 
+        p.price, 
+        p.image, 
+        p.description, 
+        o.id, 
+        o.product_id,
+        o.quantity
+    FROM order_items AS o
+    JOIN products AS p ON p.id = o.product_id 
+    WHERE order_id = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$order_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
