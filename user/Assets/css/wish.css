@@ -1,0 +1,64 @@
+.product-wish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: center;*/
+    margin: auto;
+    gap: 20px;
+    width: 80%;
+}
+.card-wish {
+    display: flex;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 80%;
+    gap: 40px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: 300ms;
+}
+.card-wish:hover {
+    transform: translateY(-3%);
+}
+.card-wish img {
+    width: 30%;
+}
+.desc-wish {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: left;*/
+    /*align-items: flex-end;*/
+    align-self: flex-start;
+    gap: 20px;
+    width: 70%;
+    font-size: 20px;
+    font-family: Agency FB, sans-serif;
+}
+#btn-wish {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*align-items: flex-end;*/
+    /*align-self: flex-end;*/
+    margin: auto;
+    width: 50%;
+    gap: 40px;
+    text-align: center;
+    font-size: 24px;
+    font-family: Staat, sans-serif;
+}
+.btn-remove-wish, .btn-wish-to-cart {
+    width: 80%;
+    height: 40px;
+    text-decoration: none;
+    color: #ffffff;
+    background: #000000;
+    font-family: Staat, sans-serif;
+    font-size: 24px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+}
+.btn-remove-wish:hover, .btn-wish-to-cart:hover {
+    background-color: #0060df;
+}

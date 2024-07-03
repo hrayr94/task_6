@@ -1,0 +1,104 @@
+#section-one {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    /*margin-bottom: 50px;*/
+    box-shadow: 0 0 40px 16px rgba(0, 0, 0, 0.11);
+}
+.section-middle {
+    width: 50%;
+    margin: auto;
+}
+#section-one-inner {
+    text-align: center;
+    padding: 100px 0;
+}
+#icon {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    display: inline-block;
+    border: 2px solid rgb(107, 104, 104);
+    padding: 30px;
+    border-radius: 50%;
+    font-size: 3em;
+    margin-bottom: 50px;
+    transition: font-size 200ms;
+}
+#icon i {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(107, 104, 104);
+}
+#icon:hover i {
+    color: #fff;
+}
+#icon:hover {
+    border: 2px solid #000;
+    background-color: #0060df;
+    font-size: 3.5em;
+}
+
+/* SECTION 2 */
+
+#section-two {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 40px 0;
+}
+.section-two-wrapper {
+    display: flex;
+    /*justify-content: space-between;*/
+    align-items: center;
+    gap: 40px;
+    /*flex-wrap: wrap;*/
+}
+.section-two-inner {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 40px 16px rgba(0, 0, 0, 0.11);
+}
+.section-two-image {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+.image {
+    transition: transform 1s;
+}
+.section-two-image h3 {
+    font-size: 1.5em;
+    color: white;
+    letter-spacing: 0.3em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+.section-two-image:hover .image {
+    transform: scale(1.2, 1.2);
+}
+.section-two-text {
+    padding: 0 40px 50px;
+}
+/* SECTION 3 */
+
+#section-three {
+    height: 500px;
+    padding-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 40px 16px rgba(0, 0, 0, 0.11);
+}
+#section-three-inner {
+    text-align: center;
+    padding: 50px 0;
+
+}

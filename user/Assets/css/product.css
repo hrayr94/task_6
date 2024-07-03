@@ -1,0 +1,89 @@
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/*card*/
+
+.card {
+    width: 300px;
+    height: 600px;
+    text-align: center;
+    font-family: Agency FB, sans-serif;
+    overflow: auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: 200ms;
+    border-radius: 10px;
+}
+.card:hover {
+    box-shadow: 5px 4px 8px 0 rgba(6, 7, 5, 0.62);
+    transform: translateY(-3%);
+    /*background-color: rgba(71, 74, 89, 0.13);*/
+}
+#desc-box {
+    height: 39%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /*margin-bottom: 40px;*/
+    border-bottom: 1px solid gray;
+}
+.p-name,
+.p-desc {
+    font-size: 28px;
+}
+.p-price {
+    color: #0060df;
+    font-size: 36px;
+    font-weight: bolder;
+}
+#login-error {
+    padding: 5px;
+    background-color: rgba(45, 122, 246, 0.37);
+    font-size: 22px;
+    font-family: sans-serif;
+}
+.card img {
+    width: 100%;
+    height: 50%;
+    padding: 0 10px;
+}
+#btn-box {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: rgba(71, 74, 89, 0.09);
+}
+#btn-box button {
+    border: none;
+    cursor: pointer;
+    font-size: 40px;
+    background: transparent;
+}
+#btn-box button:hover {
+    color: #0060df;
+}
+#btn-box p {
+    font-size: 28px;
+    font-weight: bold;
+}
+.p-mess {
+    font-size: 42px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: Staat, sans-serif;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.p-mess > span {
+    color: #0060df;
+}

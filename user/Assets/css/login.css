@@ -1,0 +1,96 @@
+.div_big {
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    min-width: 250px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.div_form {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+}
+.inputs {
+    width: 80%;
+    height: 30px;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 30px auto;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.checkbox {
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 2px 0 2px 10px;
+}
+label {
+    width: 80%;
+    height: 20px;
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+    margin: 30px auto;
+    font-size: 20px;
+    font-family: Agency FB, sans-serif;
+    font-weight: bold;
+}
+.btn {
+    width: 80%;
+    height: 40px;
+    display: block;
+    color: #fff;
+    background: #000000;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin: 40px auto 30px;
+    border: none;
+    border-radius: 5px;
+    font-family: Agency FB, sans-serif;
+}
+.btn:hover{
+    background-color: #0060df;
+}
+.div_form p, h3  {
+    text-align: center;
+}
+.div_form h3 {
+    font-family: Agency FB, sans-serif;
+}
+.div_form a {
+    width: 80%;
+    height: 40px;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-family: Agency FB, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #000000;
+    padding-top: 7px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin: 20px auto 20px;
+    border: none;
+    border-radius: 5px;
+}
+.div_form a:hover {
+    background-color: #0060df;
+}
+#error-mess {
+    width: 80%;
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 40px auto 30px;
+    font-family: Agency FB, sans-serif;
+}

@@ -1,0 +1,122 @@
+@media only screen and (max-width: 1200px) {
+    .cart, .order {
+        flex-direction: column-reverse;
+    }
+
+    .product-cart {
+        width: 100%;
+    }
+
+    .cart-total {
+        align-self: center;
+        width: 50%;
+        position: relative;
+        top: 0;
+    }
+    .order-total {
+        align-self: center;
+        width: 50%;
+        position: relative;
+        top: 0;
+    }
+    .order-item {
+        width: 100%;
+    }
+    .card-wish {
+        width: 100%;
+    }
+    .card-wish img {
+        width: 50%;
+    }
+    #btn-wish {
+        width: 70%;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+    #list-home {
+        display: none;
+    }
+
+    .cat-wrap {
+        flex-direction: column;
+    }
+    .cat {
+        width: 100%;
+    }
+
+    .section-two-wrapper {
+        flex-wrap: wrap;
+    }
+    .section-two-inner {
+        width: 100%;
+    }
+    .product {
+        flex-wrap: wrap;
+    }
+
+    .card-cart, .card-order {
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        width: 60%;
+    }
+    #desc-cart, .order-desc {
+        align-items: center;
+        align-self: center;
+        width: 100%;
+    }
+
+    .cart-total, .order-total {
+        width: 60%;
+    }
+
+    .card-wish {
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        width: 80%;
+    }
+    .card-wish img {
+        width: 60%;
+    }
+    #btn-wish {
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: 90%;
+    }
+    .desc-wish {
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: 100%;
+    }
+    .order-item {
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .cart-total {
+        width: 100%;
+    }
+    .card-cart {
+        width: 100%;
+    }
+    .order-total {
+        width: 100%;
+    }
+    .order-item {
+        width: 170%;
+    }
+
+    .card-wish {
+        width: 100%;
+    }
+}
