@@ -3,12 +3,8 @@ include "header.php";
 require_once '../Model/CategoryModel.php';
 
 session_start();
-
-if (!isset($_SESSION['admin'])) {
-    header('location: ../index.php');
-    die;
-}
 ?>
+
 <main class="main-cat">
     <div class="main-wrap" id="main-wrap-left">
         <div class="main-inner" id="main-inner-info">
@@ -51,10 +47,15 @@ if (!isset($_SESSION['admin'])) {
     $pdo = $adminModel->getConnection();
     $categoryModel = new CategoryModel($pdo);
     $categories = $categoryModel->getCategories();
+
+    if (!isset($_SESSION['admin'])) {
+        header('location: ../index.php');
+        die;
+    }
     ?>
     <div class="main-wrap" id="main-wrap-right">
         <?php
-        foreach ($categories as $category) { ?>
+        foreach ($categories as $category) : ?>
             <article id="<?= $category['id'] ?>" class="inner-cat">
                 <h2 contenteditable><?= strtoupper($category['name']) ?></h2>
                 <div class="inner-cat-buttons">
@@ -65,11 +66,10 @@ if (!isset($_SESSION['admin'])) {
                     </a>
                 </div>
             </article>
-        <?php } ?>
+        <?php endforeach; ?>
     </div>
 </main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
     $(function () {
         $('.sidebar-toggle').click(function () {
@@ -77,7 +77,7 @@ if (!isset($_SESSION['admin'])) {
         });
         $('#btn-add').click(function () {
             let name = $('#input-cat').val();
-
+            console.log(name)
             $.ajax({
                 url: "../Controller/add_category.php",
                 method: 'post',
@@ -90,7 +90,7 @@ if (!isset($_SESSION['admin'])) {
                     if (response === 'error') {
                         $('#p-mess').html('Empty field');
                     } else {
-                        location.reload();
+                        location.reload()
                     }
                 }
             })

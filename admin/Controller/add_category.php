@@ -1,9 +1,12 @@
 <?php
 
-include "../Model/AdminModel.php";
+require_once '../Model/CategoryModel.php';
 
 
 $adminModel = new AdminModel();
+$pdo = $adminModel->getConnection();
+$categoryModel = new CategoryModel($pdo);
+
 $action = $_POST['action'];
 $name = $_POST['name'];
 
@@ -11,7 +14,7 @@ if ($action == 'add') {
     if (empty($name)) {
         echo "error";
     } else {
-        $adminModel->addCategories($name);
+        $categoryModel->addCategory($name);
     }
     header('location: ../View/categories.php');
     die;
@@ -19,10 +22,10 @@ if ($action == 'add') {
 
 if ($action == 'update') {
     $id = $_POST['id'];
-    $adminModel->updateCategories($name, $id);
+    $categoryModel->updateCategory($name, $id);
 }
 
 if ($action == 'delete') {
     $id = $_POST['id'];
-    $adminModel->deleteCategories($id);
+    $categoryModel->deleteCategory($id);
 }
