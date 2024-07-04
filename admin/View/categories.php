@@ -1,44 +1,44 @@
 <?php
-include "header.php";
+include 'header.php';
 require_once '../Model/CategoryModel.php';
 
 session_start();
 ?>
 
-<main class="main-cat">
-    <div class="main-wrap" id="main-wrap-left">
-        <div class="main-inner" id="main-inner-info">
+<main class='main-cat'>
+    <div class='main-wrap' id='main-wrap-left'>
+        <div class='main-inner' id='main-inner-info'>
             <h1>Welcome home, <?= ucfirst($_SESSION['admin']) ?>!</h1>
             <ul>
-                <li><p>To add category click "Add"</p></li>
-                <li><p>To rename category click on the name, rename it, then click "Update"</p></li>
-                <li><p>To delete category click "Delete"</p></li>
-                <li><p>To show category and products click on "Arrow"</p></li>
+                <li><p>To add category click 'Add'</p></li>
+                <li><p>To rename category click on the name, rename it, then click 'Update'</p></li>
+                <li><p>To delete category click 'Delete'</p></li>
+                <li><p>To show category and products click on 'Arrow'</p></li>
             </ul>
         </div>
-        <div class="main-inner" id="main-inner-add-cat">
+        <div class='main-inner' id='main-inner-add-cat'>
             <label>Add Categories:
-                <input type="text" id="input-cat" name="input-cat">
+                <input type='text' id='input-cat' name='input-cat'>
             </label>
-            <button id="btn-add" name="add">Add</button>
-            <p id="p-mess"></p> <!-- todo response not working -->
+            <button id='btn-add' name='add'>Add</button>
+            <p id='p-mess'></p> <!-- todo response not working -->
         </div>
     </div>
-    <div class="sidebar">
-        <form action="../Controller/add_category.php" method="post">
+    <div class='sidebar'>
+        <form action=''../Controller/add_category.php' method='post'>
             <label>Add Categories:
-                <input type="text" id="input-cat" name="name">
+                <input type='text' id='input-cat' name='name'>
             </label>
-            <button id="btn-add" name="action" value="add">Add</button>
+            <button id='btn-add' name='action' value='add'>Add</button>
         </form>
-        <button class="sidebar-toggle"><i class='bx bx-sidebar'></i></button>
-        <div style="margin: 50px 10px;">
+        <button class='sidebar-toggle'><i class='bx bx-sidebar'></i></button>
+        <div style='margin: 50px 10px;'>
             <h1>Welcome home, <?= ucfirst($_SESSION['admin']) ?>!</h1>
             <ul>
-                <li><p>To add category click "Add"</p></li>
-                <li><p>To rename category click on the name, rename it, then click "Update"</p></li>
-                <li><p>To delete category click "Delete"</p></li>
-                <li><p>To show category and products click on "Arrow"</p></li>
+                <li><p>To add category click 'Add'</p></li>
+                <li><p>To rename category click on the name, rename it, then click 'Update'</p></li>
+                <li><p>To delete category click 'Delete'</p></li>
+                <li><p>To show category and products click on 'Arrow'</p></li>
             </ul>
         </div>
     </div>
@@ -70,66 +70,7 @@ session_start();
     </div>
 </main>
 
-<script>
-    $(function () {
-        $('.sidebar-toggle').click(function () {
-            $('.sidebar').toggleClass('toggle');
-        });
-        $('#btn-add').click(function () {
-            let name = $('#input-cat').val();
-            console.log(name)
-            $.ajax({
-                url: "../Controller/add_category.php",
-                method: 'post',
-                dataType: 'html',
-                data: {
-                    name,
-                    action: 'add'
-                },
-                success: (response) => {
-                    if (response === 'error') {
-                        $('#p-mess').html('Empty field');
-                    } else {
-                        location.reload()
-                    }
-                }
-            })
-        })
-
-        $('.btn-upd').click(function () {
-            let id = $(this).parents('.inner-cat').attr('id');
-            let name = $(this).parents('.inner-cat').find('h2').html();
-
-            $.ajax({
-                url: "../Controller/add_category.php",
-                method: 'post',
-                data: {
-                    id, name,
-                    action: 'update'
-                },
-                success: () => {
-                    location.reload();
-                }
-            })
-        })
-
-        $('.btn-del').click(function () {
-            let id = $(this).parents('.inner-cat').attr('id');
-
-            $.ajax({
-                url: "../Controller/add_category.php",
-                method: 'post',
-                data: {
-                    id,
-                    action: 'delete'
-                },
-                success: () => {
-                    location.reload();
-                }
-            })
-        })
-    })
-</script>
+<script src="../Assets/js/categories.js"></script>
 
 <?php
 include "footer.php";
