@@ -1,91 +1,91 @@
-@font-face {
-    font-family: Staat;
-    src: url(../Fonts/Staatliches/Staatliches-Regular.ttf);
-}
-body {
-    background: #e2e2e5;
-    /*background-color: rgba(234, 234, 234, 0.56);*/
-}
-.wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.inner_left {
-    width: 300px;
-    background: white;
-    box-shadow: 0 0 40px 16px rgba(0,0,0,0.22);
-    transition: 300ms ease-in-out;
-}
-.inner_left > p {
-    width: 300px;
-    margin: 50px auto;
-    font-size: 40px;
-    text-align: center;
-    font-family: Staat, sans-serif;
-    letter-spacing: 3px;
-}
-.inner_right {
-    width: 400px;
-    /*margin: auto;*/
-    /*background: linear-gradient(42deg, #d9d4d4 41%, #fff 98%);*/
-    background: #474a59;
-    border-radius: 10px;
-    box-shadow: 0 0 40px 16px rgba(0,0,0,0.22);
-    transition: 300ms;
-}
-.form {
-    width: 90%;
-    padding: 10px;
-    margin: 20px auto;
-}
-.inputs {
-    width: 70%;
-    height: 20px;
-    background: #e0dede;
-    justify-content: center;
-    display: flex;
-    margin: 30px auto;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-}
-.btn {
-    width: 70%;
-    height: 40px;
-    display: block;
-    color: #fff;
-    background: #42af45;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 30px auto 10px;
-    border: none;
-    border-radius: 5px;
-}
-.btn:hover {
-    background: #339d36;
-}
-.form > h1 {
-    text-align: center;
-    color: #fff;
-    font-size: 40px;
-    font-family: Staat, sans-serif;
-    letter-spacing: 3px;
-}
-@media only screen and (max-width: 750px) {
-    .inner_left {
-        width: 0;
-    }
-}
-@media only screen and (max-width: 430px) {
-    .inner_left {
-        display: none;
-    }
-    .inner_right {
-        width: 320px;
-    }
-}
+/*@font-face {*/
+/*    font-family: Staat;*/
+/*    src: url(../Fonts/Staatliches/Staatliches-Regular.ttf);*/
+/*}*/
+/*body {*/
+/*    background: #e2e2e5;*/
+/*    !*background-color: rgba(234, 234, 234, 0.56);*!*/
+/*}*/
+/*.wrap {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+/*.inner_left {*/
+/*    width: 300px;*/
+/*    background: white;*/
+/*    box-shadow: 0 0 40px 16px rgba(0,0,0,0.22);*/
+/*    transition: 300ms ease-in-out;*/
+/*}*/
+/*.inner_left > p {*/
+/*    width: 300px;*/
+/*    margin: 50px auto;*/
+/*    font-size: 40px;*/
+/*    text-align: center;*/
+/*    font-family: Staat, sans-serif;*/
+/*    letter-spacing: 3px;*/
+/*}*/
+/*.inner_right {*/
+/*    width: 400px;*/
+/*    !*margin: auto;*!*/
+/*    !*background: linear-gradient(42deg, #d9d4d4 41%, #fff 98%);*!*/
+/*    background: #474a59;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 0 40px 16px rgba(0,0,0,0.22);*/
+/*    transition: 300ms;*/
+/*}*/
+/*.form {*/
+/*    width: 90%;*/
+/*    padding: 10px;*/
+/*    margin: 20px auto;*/
+/*}*/
+/*.inputs {*/
+/*    width: 70%;*/
+/*    height: 20px;*/
+/*    background: #e0dede;*/
+/*    justify-content: center;*/
+/*    display: flex;*/
+/*    margin: 30px auto;*/
+/*    padding: 10px;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*}*/
+/*.btn {*/
+/*    width: 70%;*/
+/*    height: 40px;*/
+/*    display: block;*/
+/*    color: #fff;*/
+/*    background: #42af45;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*    margin: 30px auto 10px;*/
+/*    border: none;*/
+/*    border-radius: 5px;*/
+/*}*/
+/*.btn:hover {*/
+/*    background: #339d36;*/
+/*}*/
+/*.form > h1 {*/
+/*    text-align: center;*/
+/*    color: #fff;*/
+/*    font-size: 40px;*/
+/*    font-family: Staat, sans-serif;*/
+/*    letter-spacing: 3px;*/
+/*}*/
+/*@media only screen and (max-width: 750px) {*/
+/*    .inner_left {*/
+/*        width: 0;*/
+/*    }*/
+/*}*/
+/*@media only screen and (max-width: 430px) {*/
+/*    .inner_left {*/
+/*        display: none;*/
+/*    }*/
+/*    .inner_right {*/
+/*        width: 320px;*/
+/*    }*/
+/*}*/

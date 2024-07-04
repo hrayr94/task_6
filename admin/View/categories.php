@@ -1,6 +1,6 @@
 <?php
 include "header.php";
-include "../Model/AdminModel.php";
+require_once '../Model/CategoryModel.php';
 
 session_start();
 
@@ -47,10 +47,10 @@ if (!isset($_SESSION['admin'])) {
         </div>
     </div>
     <?php
-
     $adminModel = new AdminModel();
-    $categories = $adminModel->getCategories();
-
+    $pdo = $adminModel->getConnection();
+    $categoryModel = new CategoryModel($pdo);
+    $categories = $categoryModel->getCategories();
     ?>
     <div class="main-wrap" id="main-wrap-right">
         <?php
@@ -67,7 +67,6 @@ if (!isset($_SESSION['admin'])) {
             </article>
         <?php } ?>
     </div>
-
 </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

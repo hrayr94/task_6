@@ -1,6 +1,6 @@
 <?php
 include "header.php";
-include "../Model/AdminModel.php";
+require_once '../Model/ProductModel.php';
 
 session_start();
 
@@ -35,7 +35,9 @@ if (isset($_GET['cat_id'])) {
     <?php
 
     $adminModel = new AdminModel();
-    $products = $adminModel->getProduct($_SESSION['cat_id']);
+    $pdo = $adminModel->getConnection();
+    $productModel = new ProductModel($pdo);
+    $products = $productModel->getProductsByCategory($_SESSION['cat_id']);
     ?>
 
     <div class="main-wrap-prod" id="wrap-prod-right">
