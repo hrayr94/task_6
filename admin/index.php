@@ -6,7 +6,7 @@
           content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="path/to/your/font.css"> <!-- Link to your custom font -->
+    <link rel="stylesheet" href="Assets/Fonts/Robot/SourceSansPro-Black.ttf">
     <title>Login</title>
     <style>
         @font-face {
