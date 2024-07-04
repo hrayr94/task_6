@@ -9,56 +9,58 @@ if (isset($_GET['cat_id'])) {
 }
 
 ?>
-<main class="main-prod">
-    <div class="main-wrap-prod" id="wrap-prod-left">
-        <form action="../Controller/add_product.php" method="post" enctype="multipart/form-data" class="form-prod">
-            <input type="text" name="name" class="input-product" placeholder="Name">
-            <input type="text" name="price" class="input-product" placeholder="Price">
-            <input type="text" name="desc" class="input-product" placeholder="Description">
-            <input type="file" name="img" id="input-product-img">
-            <button id="btn-add-prod" name="action" value="add">Add product</button>
-        </form>
-        <a href="categories.php"><i class='bx bxs-left-arrow-circle'></i></a>
-    </div>
-    <div class="sidebar">
-        <form action="../Controller/add_product.php" method="post" enctype="multipart/form-data" class="form-prod">
-            <input type="text" name="name" class="input-product" placeholder="Name">
-            <input type="text" name="price" class="input-product" placeholder="Price">
-            <input type="text" name="desc" class="input-product" placeholder="Description">
-            <input type="file" name="img" id="input-product-img">
-            <button id="btn-add-prod" name="action" value="add">Add product</button>
-        </form>
-        <button class="sidebar-toggle"><i class='bx bx-sidebar'></i></button>
-        <a href="categories.php"><i class='bx bxs-left-arrow-circle'></i></a>
-    </div>
-
-    <?php
-
-    $adminModel = new AdminModel();
-    $pdo = $adminModel->getConnection();
-    $productModel = new ProductModel($pdo);
-    $products = $productModel->getProductsByCategory($_SESSION['cat_id']);
-    ?>
-
-    <div class="main-wrap-prod" id="wrap-prod-right">
-        <?php
-        foreach ($products as $product) { ?>
-            <article id="<?= $product['id'] ?>" class="card">
-                <img src="../Assets/images/<?= $product['image'] ?>" alt="Product Image">
-                <div>
-                    <h2 class="p-name" contenteditable><?= $product['name'] ?></h2>
-                    <p class="p-price" contenteditable><?= $product['price'] ?>$</p>
-                    <p class="p-desc" contenteditable><?= $product['description'] ?></p>
+<main class="container my-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <form action="../Controller/add_product.php" method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" id="productName" placeholder="Name">
                 </div>
-                <div class="btn-s">
-                    <button class="btn-upd">Update</button>
-                    <button class="btn-del">Delete</button>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Price</label>
+                    <input type="text" name="price" class="form-control" id="productPrice" placeholder="Price">
                 </div>
-            </article>
-        <?php } ?>
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label">Description</label>
+                    <input type="text" name="desc" class="form-control" id="productDescription" placeholder="Description">
+                </div>
+                <div class="mb-3">
+                    <label for="productImage" class="form-label">Image</label>
+                    <input type="file" name="img" class="form-control" id="productImage">
+                </div>
+                <button id="btn-add-prod" name="action" value="add" class="btn btn-primary">Add product</button>
+            </form>
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <?php
+                $adminModel = new AdminModel();
+                $pdo = $adminModel->getConnection();
+                $productModel = new ProductModel($pdo);
+                $products = $productModel->getProducts();
+
+                foreach ($products as $product) : ?>
+                    <div class="col-md-4 mb-4">
+                        <div id="<?= $product['id'] ?>" class="card shadow-sm">
+                            <img src="../Assets/images/<?= $product['image'] ?>" class="card-img-top product-img img-fluid" alt="Product Image" style="object-fit: cover; height: 300px;">
+                            <div class="card-body">
+                                <h5 class="card-title p-name" contenteditable><?= $product['name'] ?></h5>
+                                <p class="card-text p-price" contenteditable><?= $product['price'] ?>$</p>
+                                <p class="card-text p-desc" contenteditable><?= $product['description'] ?></p>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-outline-success btn-upd">Update</button>
+                                    <button class="btn btn-outline-danger btn-del">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 </main>
-
 <script src="../Assets/js/products.js"></script>
 
 

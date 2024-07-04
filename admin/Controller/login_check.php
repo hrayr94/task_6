@@ -26,5 +26,5 @@ if ($count > 0) {
 } else {
     $_SESSION['error'] = "Wrong login or password";
 }
-header('location: ../View/categories.php');
+header('location: ../View/products.php');
 die;

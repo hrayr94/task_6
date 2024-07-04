@@ -9,18 +9,16 @@ class ProductModel extends AdminModel
     }
 
     /**
-     * @param $category_id
      * @param $name
      * @param $description
      * @param $image
      * @param $price
      * @return void
      */
-    public function addProduct($category_id, $name, $description, $image, $price): void
+    public function addProduct($name, $description, $image, $price): void
     {
-        $query = "INSERT INTO products (category_id, name, description, image, price) VALUES (:category_id, :name, :description, :image, :price)";
+        $query = "INSERT INTO products (name, description, image, price) VALUES (:name, :description, :image, :price)";
         $stmt = $this->getConnection()->prepare($query);
-        $stmt->bindParam(':category_id', $category_id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':image', $image);
@@ -29,14 +27,12 @@ class ProductModel extends AdminModel
     }
 
     /**
-     * @param $category_id
      * @return array
      */
-    public function getProductsByCategory($category_id): array
+    public function getProducts(): array
     {
-        $query = "SELECT * FROM products WHERE category_id = :category_id";
+        $query = "SELECT * FROM products";
         $stmt = $this->getConnection()->prepare($query);
-        $stmt->bindParam(':category_id', $category_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
