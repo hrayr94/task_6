@@ -9,7 +9,6 @@ $productModel = new ProductModel($pdo);
 $action = $_POST['action'];
 
 if ($action === 'add') {
-    $cat_id = $_SESSION['cat_id'];
     $name = $_POST['name'];
     $desc = $_POST['desc'];
     $price = $_POST['price'];
@@ -19,11 +18,10 @@ if ($action === 'add') {
     move_uploaded_file($tmp_img, "../Assets/images/$img");
 
     if (!empty($name)) {
-        $productModel->addProduct($cat_id, $name, $desc, $img, $price);
-        header("location: ../View/products.php?cat_id=$cat_id");
+        $productModel->addProduct($name, $desc, $img, $price);
+        header("location: ../View/products.php");
     } else {
-        header("location: ../View/products.php?cat_id=$cat_id&error=empty");
-        die;
+        die("Please select a file to upload");
     }
 }
 

@@ -1,43 +1,44 @@
 <?php
 include "user/View/header.php";
-include "user/Model/UserModel.php";
-?>
+require_once 'admin/Model/ProductModel.php';
 
-    <main>
+function displayProducts()
+{
+    $adminModel = new AdminModel();
+    $pdo = $adminModel->getConnection();
+    $productModel = new ProductModel($pdo);
+    $products = $productModel->getProducts();
 
-        <?php
-        $userModel = new UserModel();
-        $categories = $userModel->getCategories();
+    foreach ($products as $product) {
         ?>
-
-        <?php
-        if (!count($categories)) : ?>
-            <p class='p-mess'>There are <span>NO</span> categories!</p>
-        <?php else : ?>
-
-        <div class="cat-wrap">
-            <div class="cat">
-                <?php
-                foreach ($categories as $category) : ?>
-                    <div id="<?= $category['id'] ?>" class="cat-box">
-                        <a href="user/View/products.php?cat_id=<?= $category['id'] ?>"><?= strtoupper($category['name']) ?></a>
+        <div class="col-md-4 mb-4">
+            <div id="<?= $product['id'] ?>" class="card shadow-sm">
+                <img src="user/Assets/images/<?= $product['image'] ?>" class="card-img-top product-img img-fluid"
+                     alt="Product Image" style="object-fit: cover; height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title p-name"><?= $product['name'] ?></h5>
+                    <p class="card-text p-price"><?= $product['price'] ?>$</p>
+                    <p class="card-text p-desc"><?= $product['description'] ?></p>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-primary btn-add-to-cart">Add to Cart</button>
+                        <button class="btn btn-outline-success btn-add-to-order">Add to Order</button>
                     </div>
-                <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
-            <div class="cat-info">
-                <div class="cat-info-inner">
-                    <div id="icon">
-                        <i class='bx bxs-shopping-bag'></i>
-                    </div>
-                    <h2>EleganceEnsemble</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae
-                        malesuada turpis. Nam pellentesque in ac aliquam. Aliquam tempor
-                        mi porta egestas maximus lorem ipsum dolor.</p>
                 </div>
             </div>
         </div>
-    </main>
+        <?php
+    }
+}
+
+?>
+
+<main class="container my-5">
+    <div class="row">
+        <?php displayProducts(); ?>
+    </div>
+</main>
+
+<script src="Assets/js/products.js"></script>
 
 <?php
 include "user/View/footer.php";
