@@ -4,7 +4,6 @@ $(function () {
     let orderItemsContainer = $('#order-items-container');
     let bill = 0;
 
-    // Iterate through each order item in localStorage
     Object.values(orders).forEach(orderItem => {
         let order_price = orderItem.price;
         let order_quantity = orderItem.quantity;
