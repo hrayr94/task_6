@@ -2,7 +2,7 @@
 
 session_start();
 
-include "../Model/AdminModel.php";
+require_once "../Model/AdminModel.php";
 
 $adminModel = new AdminModel();
 $login = $_POST['login'];
@@ -10,21 +10,23 @@ $pass = $_POST['password'];
 
 if (!isset($_POST['btn_enter'])) {
     header('location: ../index.php');
-    die;
+    exit; // Stop further execution
 }
 
 if (empty($login) || empty($pass)) {
     $_SESSION['error'] = "Empty login or password!";
     header('location: ../index.php');
-    die;
+    exit; // Stop further execution
 }
 
-$count = $adminModel->admin($login, $pass);
+$admin = $adminModel->admin($login, $pass);
 
-if ($count > 0) {
-    $_SESSION['admin'] = $login;
+if ($admin) {
+    $_SESSION['admin'] = $admin['username'];
+    header('location: ../View/products.php');
+    exit;
 } else {
     $_SESSION['error'] = "Wrong login or password";
+    header('location: ../index.php');
+    exit;
 }
-header('location: ../View/products.php');
-die;

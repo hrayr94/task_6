@@ -1,7 +1,6 @@
 <?php
 
-namespace Model;
-
+require_once 'DB.php';
 class OrderModel extends DB
 {
     public function __construct(PDO $pdo)
@@ -9,46 +8,27 @@ class OrderModel extends DB
         parent::__construct($pdo);
     }
 
-    public function getAllCartItems(): array
-    {
-        $query = "
-    SELECT 
-        p.name, 
-        p.price, 
-        p.image, 
-        c.quantity, 
-        p.description, 
-        c.id, 
-        c.product_id 
-    FROM cart AS c
-    JOIN products AS p ON p.id = c.product_id ";
-        $stmt = $this->getConnection()->prepare($query);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+
 
     public function addToOrder()
     {
-        // Get cart items
-        $cartItems = $this->getAllCartItems();
+        // Get order items
+        $orderItems = $this->getAllOrderItems();
 
         // Calculate total amount
         $total_amount = 0;
-        foreach ($cartItems as $item) {
+        foreach ($orderItems as $item) {
             $total_amount += $item['price'] * $item['quantity'];
         }
 
         // Create order and get order ID
         $order_id = $this->createOrder($total_amount);
 
-        // Create order items for each cart item
-        foreach ($cartItems as $item) {
+        foreach ($orderItems as $item) {
             $this->createOrderItem($order_id, $item['product_id'], $item['quantity']);
         }
 
-        // Clear cart after order
-        $this->clearCart();
-
-        return $this->getAllOrderItems($order_id); // Return updated order items after placing order
+        return $this->getAllOrderItems($order_id);
     }
 
 
