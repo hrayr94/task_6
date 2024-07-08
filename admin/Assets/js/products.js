@@ -1,7 +1,4 @@
 $(function () {
-    $('.sidebar-toggle').click(function () {
-        $('.sidebar').toggleClass('toggle');
-    });
     $('.btn-upd').click(function () {
         let self = $(this).parents('.card');
         let id = self.attr('id');

@@ -1,6 +1,6 @@
 <?php
 
-class UserModel
+class DB
 {
     private PDO $connection;
 
@@ -18,7 +18,8 @@ class UserModel
         }
     }
 
-    public function getConnection(): PDO {
+    public function getConnection(): PDO
+    {
         return $this->connection;
     }
 

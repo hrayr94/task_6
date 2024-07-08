@@ -1,5 +1,6 @@
 <?php
 
+namespace Model;
 class CartModel
 {
     public function __construct()

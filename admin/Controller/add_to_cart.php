@@ -1,4 +1,7 @@
 <?php
+
+use Model\CartModel;
+
 require_once "../Model/CartModel.php";
 
 session_start();

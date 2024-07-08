@@ -1,10 +1,12 @@
 <?php
+
 include "user/View/header.php";
-require_once 'user/Model/ProductModel.php';
+require_once 'admin/Model/DB.php';
+require_once 'admin/Model/ProductModel.php';
 
 function displayProducts()
 {
-    $userModel = new UserModel();
+    $userModel = new DB();
     $pdo = $userModel->getConnection();
     $productModel = new ProductModel($pdo);
     $products = $productModel->getProducts();
@@ -13,7 +15,7 @@ function displayProducts()
         ?>
         <div class="col-md-4 mb-4">
             <div id="<?= $product['id'] ?>" class="card shadow-sm">
-                <img src="user/Assets/images/<?= $product['image'] ?>" class="card-img-top product-img img-fluid"
+                <img src="admin/Assets/images/<?= $product['image'] ?>" class="card-img-top product-img img-fluid"
                      alt="Product Image" style="object-fit: cover; height: 300px;">
                 <div class="card-body">
                     <h5 class="card-title p-name"><?= $product['name'] ?></h5>
@@ -29,6 +31,7 @@ function displayProducts()
         <?php
     }
 }
+
 ?>
 
 <main class="container my-5">

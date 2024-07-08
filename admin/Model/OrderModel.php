@@ -1,6 +1,8 @@
 <?php
 
-class OrderModel extends UserModel
+namespace Model;
+
+class OrderModel extends DB
 {
     public function __construct(PDO $pdo)
     {

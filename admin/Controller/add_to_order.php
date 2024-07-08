@@ -1,9 +1,11 @@
 <?php
 
-include "../Model/UserModel.php";
+use Model\DB;
+
+include "../Model/DB.php";
 session_start();
 
-$userModel = new UserModel();
+$userModel = new DB();
 $action = $_POST['action'];
 $user_id = $_SESSION['user_id'];
 $product_id = $_POST['product_id'];

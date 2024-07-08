@@ -1,7 +1,9 @@
 <?php
 
+use Model\DB;
+
 include "header.php";
-include "../Model/UserModel.php";
+include "../Model/DB.php";
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = "Please log in first";
@@ -9,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     die;
 }
 
-$userModel = new UserModel();
+$userModel = new DB();
 $user_id = $_SESSION['user_id'];
 $wishItems = $userModel->getWishItems($user_id);
 

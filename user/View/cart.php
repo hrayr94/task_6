@@ -1,7 +1,9 @@
 <?php
 
+use Model\DB;
+
 include "header.php";
-include "../Model/UserModel.php";
+include "../Model/DB.php";
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = "Please log in first";
@@ -9,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     die;
 }
 
-$userModel = new UserModel();
+$userModel = new DB();
 $user_id = $_SESSION['user_id'];
 $cartItems = $userModel->getCartItems($user_id);
 
@@ -69,72 +71,6 @@ if (!count($cartItems)) { ?>
 <?php
 include "footer.php";
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script>
-    $(function () {
-        $('.plus').click(function () {
-            let price = $(this).parents('.card-cart').find('.cart-price').html();
-            let quantity = $(this).parents('.card-cart').find('.quantity').html();
-            let total = $(this).parents('.cart-total').find('.total').html();
-            let product_id = $(this).parents('.card-cart').attr('id');
-            console.log(price + " " + quantity + " " + total);
-            quantity++;
-            $(this).parents('.card-cart').find('.quantity').html(quantity);
-            $('.cart-total').find('.total').html(quantity*price);
-            $.ajax({
-                url: "../Controller/add_to_cart.php",
-                method: "post",
-                data: {
-                    quantity, product_id,
-                    action: "update"
-                },
-                success: () => {
-                    location.reload(); //todo make without reload?
-                }
-            })
-
-        })
-        $('.minus').click(function () {
-            let price = $(this).parents('.card-cart').find('.cart-price').html();
-            let quantity = $(this).parents('.card-cart').find('.quantity').html();
-            let total = $(this).parents('.cart-total').find('.total').html();
-            let product_id = $(this).parents('.card-cart').attr('id');
-            console.log(price + " " + quantity + " " + total);
-            if (quantity > 1) {
-                quantity--;
-                $(this).parents('.card-cart').find('.quantity').html(quantity);
-                $('.cart-total').find('.total').html(quantity*total);
-                $.ajax({
-                    url: "../Controller/add_to_cart.php",
-                    method: "post",
-                    data: {
-                        quantity, product_id,
-                        action: "update"
-                    },
-                    success: () => {
-                        location.reload();
-                    }
-                })
-            }
-        })
-        $('.btn-remove').click(function () {
-            let product_id = $(this).parents('.card-cart').attr('id');
-
-            $.ajax({
-                url: "../Controller/add_to_cart.php",
-                method: "post",
-                data: {
-                    product_id,
-                    action: "delete"
-                },
-                success: () => {
-                    location.reload();
-                }
-            })
-        })
-    })
-</script>
 
 
 

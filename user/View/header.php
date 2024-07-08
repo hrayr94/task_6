@@ -17,10 +17,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="admin">Dashboard</a>
+                    <?php define('BASE_URL', 'http://localhost/hrayr/task_6/'); ?>
+                    <a class="nav-link" href="<?= BASE_URL ?>">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= BASE_URL ?>user/View/order.php">Orders</a>
                 </li>
             </ul>
         </div>
     </nav>
+
 </header>
 <main class="container mt-5">
