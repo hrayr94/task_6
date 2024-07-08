@@ -1,11 +1,11 @@
 <?php
 include "user/View/header.php";
-require_once 'admin/Model/ProductModel.php';
+require_once 'user/Model/ProductModel.php';
 
 function displayProducts()
 {
-    $adminModel = new AdminModel();
-    $pdo = $adminModel->getConnection();
+    $userModel = new UserModel();
+    $pdo = $userModel->getConnection();
     $productModel = new ProductModel($pdo);
     $products = $productModel->getProducts();
 
@@ -29,7 +29,6 @@ function displayProducts()
         <?php
     }
 }
-
 ?>
 
 <main class="container my-5">
@@ -37,9 +36,8 @@ function displayProducts()
         <?php displayProducts(); ?>
     </div>
 </main>
-
-<script src="Assets/js/products.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="user/Assets/js/products.js"></script>
 <?php
 include "user/View/footer.php";
 ?>

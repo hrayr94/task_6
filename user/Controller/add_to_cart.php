@@ -1,33 +1,23 @@
 <?php
+require_once "../Model/CartModel.php";
+
 session_start();
-include "../Model/UserModel.php";
 
-$userModel = new UserModel();
+$response = ['success' => false, 'message' => 'Error adding to cart'];
+$quantity = 0;
+if (isset($_POST['product_id']) && isset($_POST['action']) && $_POST['action'] === 'add') {
+    $product_id = $_POST['product_id'];
+    $quantity += 1;
 
-// Initialize variables with default values to avoid notices
-$action = $_POST['action'] ?? '';
-$user_id = $_SESSION['user_id'] ?? null;
-$product_id = $_POST['product_id'] ?? null;
+    $cartModel = new CartModel();
+    $cartItems = $cartModel->addToCart($product_id, $quantity);
 
-if ($action === 'add') {
-    if (!isset($user_id)) {
-        echo json_encode(['success' => false, 'message' => 'User not logged in']);
-        die;
+    if (!empty($cartItems)) {
+        $response['success'] = true;
+        $response['message'] = 'Product added to cart successfully';
+        $response['cart'] = $cartItems;
     }
-
-    $checkCart = $userModel->checkCartSpecificProduct($user_id, $product_id);
-
-    if (!$checkCart) {
-        $cartItems = $userModel->addToCart($user_id, $product_id, 1);
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Product already in cart']);
-    }
-} elseif ($action === 'update') {
-    $quantity = $_POST['quantity'] ?? 0;
-    $userModel->updateCart($quantity, $product_id);
-} elseif ($action === 'delete') {
-    $userModel->deleteCart($product_id);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid action']);
 }
+
+echo json_encode($response);
+?>
