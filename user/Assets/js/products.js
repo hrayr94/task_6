@@ -4,12 +4,14 @@ $(function () {
         let product_id = $(this).parents('.card').attr('id');
         let product_name = $(this).parents('.card').find('.card-title').text().trim();
         let product_price = $(this).parents('.card').find('.card-text').text().trim().replace('$', '');
+        let product_image = $(this).parents('.card').find('img').attr('src').split('/').pop();
         let quantity = 1; // Default quantity for simplicity
 
         let cartItem = {
             product_id: product_id,
             name: product_name,
             price: parseFloat(product_price),
+            image: product_image,
             quantity: quantity
         };
 
@@ -31,12 +33,14 @@ $(function () {
         let product_id = $(this).parents('.card').attr('id');
         let product_name = $(this).parents('.card').find('.card-title').text().trim();
         let product_price = $(this).parents('.card').find('.card-text').text().trim().replace('$', '');
+        let product_image = $(this).parents('.card').find('img').attr('src').split('/').pop();
         let quantity = 1; // Default quantity for simplicity
 
         let orderItem = {
             product_id: product_id,
             name: product_name,
             price: parseFloat(product_price),
+            image: product_image,
             quantity: quantity
         };
 

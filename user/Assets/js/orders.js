@@ -7,10 +7,11 @@ $(function () {
     Object.values(orders).forEach(orderItem => {
         let order_price = orderItem.price;
         let order_quantity = orderItem.quantity;
+        let order_image = orderItem.image;
 
         let orderCard = `
             <article id="${orderItem.product_id}" class="card-order">
-                <img src="../Assets/images/${orderItem.image}" alt="Image" width="200" height="200">
+                <img src="../../admin/Assets/images/${order_image}" alt="Image" width="200" height="200">
                 <div class="order-desc">
                     <h2>${orderItem.name}</h2>
                     <p>${order_price}$</p>
@@ -27,6 +28,5 @@ $(function () {
         bill += order_price * order_quantity;
     });
 
-    // Update total bill amount
     $('#p-bill').text(`$ ${bill}`);
 });
